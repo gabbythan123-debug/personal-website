@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login — MIHP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+      body{
+        margin: 0;
+        padding: 0;
+        min-height:100vh;
+        font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        background: #0f1720;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .hero{ min-height:100vh; width : 100%; background:#1b1b1b; position: relative; }
+      div{ box-sizing: border-box; }
+      .main-box{ width: 320px; height: 480px; position: relative; margin: 6% auto; background:#1b1b1b; display:flex; justify-content:center; align-items:center; overflow:hidden; }
+      .sp{ position: absolute; transition: 0.5s; }
+      .sp-t{ top: 0; right: 0; width: 200px; height: 2px; background:linear-gradient( to left , transparent,#57AAB4,#57AAB4); animation: anim2 2s linear infinite; transform: translateY(-300%); animation-delay: 0.8s; }
+      .sp-r{ bottom: 0; right: 0; width: 2px; height: 200px; background:linear-gradient( to top , transparent,#57AAB4 ,#57AAB4); animation: anim1 2s linear infinite; animation-delay: 0s; }
+      .sp-b{ right: 0; bottom: 0; width: 200px; height: 2px; background:linear-gradient( to left , transparent,#57AAB4,#57AAB4); animation: anim2 2s linear infinite; }
+      .sp-l{ left: 0; top:0; width: 2px; height: 200px; background:linear-gradient( to top , transparent,#57AAB4,#57AAB4); animation: anim1 2s linear infinite; animation-delay: 1s; transform: translateX(-300%); }
+      @keyframes anim1 { 0%{ transform: translateY(300%);} 100%{ transform: translateY(-300%);} }
+      @keyframes anim2 { 0%{ transform: translateX(300%);} 100%{ transform: translateX(-300%);} }
+      .form-box{ width: 316px; height: 476px; position: relative; background:#252525; padding: 5px; overflow: hidden; z-index: 5; border-radius: 8px; box-shadow: 0 12px 30px rgba(0,0,0,0.6); }
+      #after{ width: 50%; height: 100%; content: ""; position: absolute; top: 0; left: 50%; background:#2d2e30; z-index:-1; transition: 0.5s; }
+      .button-box{ width: 220px; margin: 20px auto 10px auto; position: relative; border-radius:30px; display:flex; justify-content: space-around; animation: animBTN 5s linear infinite; }
+      @keyframes animBTN { 0%{ box-shadow:  0 0 10px 9px rgba(3,169,244,0.3);} 33%{ box-shadow:  0 0 10px 9px rgba(244,65,165,0.3);} 66.9%{ box-shadow:  0 0 10px 9px rgba(255,235,59,0.3);} 100%{ box-shadow:  0 0 10px 9px rgba(3,169,244,0.3);} }
+      .toggle-btn{ padding: 8px 22px; cursor: pointer; background:transparent; border: 0; font-size: 14px; font-weight: 600; color: rgb(234,234,235); outline: none; transition: 0.25s; }
+      #btn{ position: absolute; top: 0; left: 0; width: 110px; height: 100%; background:linear-gradient( to left , #57AAB4,#57AAB4); border-radius: 30px; transition: 0.25s; }
+      .input-group{ width: 320px; display:flex; flex-wrap:wrap; justify-content:center; top:160px; position: absolute; padding:0 30px; transition: 0.5s; box-sizing:border-box; }
+      .input-field{ width:100%; padding:10px 8px; margin:10px 0; border-top:0; border-left:2px solid #57AAB4; border-right:0; border-bottom:2px solid #57AAB4; outline:none; background:transparent; color:#eaeaea; font-size:14px; border-radius:4px; }
+      .submit-btn{ width:85%; padding:10px 30px; cursor:pointer; display:block; margin: 18px auto 0 auto; background: linear-gradient(to right, #03a9f4,#57AAB4,#03a9f4); border:0; outline:none; border-radius:30px; color:#fff; font-weight:bold; font-size:15px; transition:0.3s; }
+      .submit-btn:hover{ filter:brightness(0.95); }
+      .span{ margin: 14px 0; color:rgb(234,234,235); font-size:12px; display:flex; justify-content:center; align-items:center; }
+      #login{ left : 0px; }
+      #register{ left : 500px; }
+      @media (max-width:420px){ .main-box{ width: 92%; height:auto; } .form-box{ width: 100%; } .input-group{ position: static; padding: 16px;} }
+    </style>
+  </head>
+  <body>
+    <div class="hero" role="main">
+      <div class="main-box" aria-live="polite">
+        <div class="form-box" role="region" aria-label="Authentication form">
+          <div id="after" aria-hidden="true"></div>
+          <div class="button-box" role="tablist" aria-label="Switch authentication mode">
+            <div id="btn" aria-hidden="true"></div>
+            <button id="log" type="button" class="toggle-btn" onclick="login()" role="tab" aria-selected="true" aria-controls="login">Log in</button>
+            <button id="reg" type="button" class="toggle-btn" onclick="register()" role="tab" aria-selected="false" aria-controls="register">Register</button>
+          </div>
+
+          <!-- LOGIN FORM -->
+          <form id="login" class="input-group" aria-label="Login form" autocomplete="on">
+            <label for="user-login" class="visually-hidden">Username</label>
+            <input id="user-login" name="user" type="text" class="input-field" placeholder="User" required aria-required="true">
+            <label for="pwd-login" class="visually-hidden">Password</label>
+            <input id="pwd-login" name="password" type="password" class="input-field" placeholder="Password" required aria-required="true">
+            <input type="submit" class="submit-btn" value="Log in" aria-label="Log in">
+          </form>
+
+          <!-- REGISTER FORM -->
+          <form id="register" class="input-group" aria-label="Registration form" autocomplete="on" style="left:500px;">
+            <label for="user-register" class="visually-hidden">Username</label>
+            <input id="user-register" name="user" type="text" class="input-field" placeholder="User" required aria-required="true">
+            <label for="email-register" class="visually-hidden">Email</label>
+            <input id="email-register" name="email" type="email" class="input-field" placeholder="Email" required aria-required="true">
+            <label for="pwd-register" class="visually-hidden">Password</label>
+            <input id="pwd-register" name="password" type="password" class="input-field" placeholder="Password" required aria-required="true">
+            <input type="submit" class="submit-btn" value="Register" aria-label="Register">
+          </form>
+        </div>
+
+        <span class="sp sp-t"></span>
+        <span class="sp sp-r"></span>
+        <span class="sp sp-b"></span>
+        <span class="sp sp-l"></span>
+      </div>
+    </div>
+
+    <script>
+      /* UI toggle logic (kept mostly as-is) */
+      let x = document.getElementById("login");
+      let y = document.getElementById("register");
+      let z = document.getElementById("btn");
+      let log = document.getElementById("log");
+      let reg = document.getElementById("reg");
+      let after = document.getElementById("after");
+
+      function register() {
+        x.style.left = "-500px";
+        y.style.left = "0px";
+        z.style.left = "110px";
+        log.style.color = "rgb(234, 234, 235)";
+        reg.style.color = "#252525";
+        after.style.left = "0";
+        after.style.top = "0";
+        log.setAttribute('aria-selected','false');
+        reg.setAttribute('aria-selected','true');
+      }
+      function login() {
+        x.style.left = "0px";
+        y.style.left = "500px";
+        z.style.left = "0px";
+        reg.style.color = "rgb(234, 234, 235)";
+        log.style.color = "#252525";
+        after.style.left = "50%";
+        after.style.top = "0";
+        log.setAttribute('aria-selected','true');
+        reg.setAttribute('aria-selected','false');
+      }
+
+      /* Authentication behavior (client-side demo only)
+         - On successful login/register we set localStorage and redirect to index.html
+      */
+      (function(){
+        function safeSetAuth(user, email) {
+          try {
+            localStorage.setItem('mims_auth','1');
+            localStorage.setItem('mims_user', user || '');
+            if(email) localStorage.setItem('mims_email', email);
+          } catch(e) { console.warn('Storage not available', e); }
+        }
+
+        function submitLogin(e){
+          e.preventDefault();
+          var username = document.getElementById('user-login').value.trim();
+          var password = document.getElementById('pwd-login').value;
+          if(!username || !password){
+            alert('Please enter username and password.');
+            return;
+          }
+          // Demo-only: no server validation. Replace with real auth call in production.
+          safeSetAuth(username, '');
+          // Redirect to main site
+          window.location.href = 'index.html';
+        }
+
+        function submitRegister(e){
+          e.preventDefault();
+          var username = document.getElementById('user-register').value.trim();
+          var email = document.getElementById('email-register').value.trim();
+          var password = document.getElementById('pwd-register').value;
+          if(!username || !email || !password){
+            alert('Please fill all registration fields.');
+            return;
+          }
+          // Demo-only: in production, POST to server and handle verification.
+          safeSetAuth(username, email);
+          window.location.href = 'index.html';
+        }
+
+        document.getElementById('login').addEventListener('submit', submitLogin, false);
+        document.getElementById('register').addEventListener('submit', submitRegister, false);
+
+        // Make Enter key submit when focus in inputs (accessibility)
+        var inputs = document.querySelectorAll('.input-field');
+        inputs.forEach(function(inp){ inp.addEventListener('keypress', function(ev){ if(ev.key === 'Enter'){ var form = ev.target.closest('form'); if(form) form.dispatchEvent(new Event('submit',{cancelable:true})); } }); });
+
+        // If user already signed in, go to index
+        try {
+          if(localStorage.getItem('mims_auth') === '1') {
+            // already signed in
+            window.location.href = 'index.html';
+          }
+        } catch(e){}
+      })();
+    </script>
+  </body>
+</html>
