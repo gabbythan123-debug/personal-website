@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Medical News - MIHP</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+  <div class="topbar bg-primary text-white py-2">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="small">Medical Information for Healthcare Professionals</div>
+  <div class="small"><a href="mailto:contact@mihp.ph" class="text-white text-decoration-none"><i class="fas fa-envelope me-1"></i>Contact Us</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="header-main py-3 bg-white border-bottom">
+    <div class="container">
+        <div class="row align-items-center">
+          <div class="col-12 col-md-6 mb-2 mb-md-0">
+            <div class="d-flex align-items-center">
+              <a class="navbar-brand text-primary me-3" href="index.html">
+                <i class="fas fa-stethoscope me-2"></i>MIHP
+              </a>
+              <span class="text-muted d-none d-md-inline">Medical Information for Healthcare Professionals</span>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="search-wrap ms-md-auto" style="width: 100%; max-width: 360px;">
+              <div class="d-flex gap-2">
+                <input type="text" class="form-control flex-grow-1" id="siteSearchInput" placeholder="Search medical news...">
+                <button class="btn btn-primary flex-shrink-0" type="button">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+              <div id="searchResults" class="list-group shadow-sm"></div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+      <button class="navbar-toggler d-lg-none ms-auto my-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavLabel">Menu</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav w-100 flex-column flex-lg-row align-items-start align-items-lg-center justify-content-lg-evenly">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="drug-database.html">Drug Database</a></li>
+            <li class="nav-item"><a class="nav-link" href="drug-interactions.html">Drug Interactions</a></li>
+            <li class="nav-item"><a class="nav-link" href="clinical-tools.html">Clinical Tools</a></li>
+            <li class="nav-item"><a class="nav-link active" href="medical-news.html">Medical News</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="py-5">
+    <div class="container">
+      <div class="row mb-4">
+        <div class="col-lg-8">
+          <h1 class="mb-3">Latest Philippine Medical News</h1>
+          <p class="lead">Stay updated with the latest developments in Philippine medicine, research, and healthcare.</p>
+        </div>
+      </div>
+
+      
+      <div class="card mb-4 featured-news">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=60" 
+                 class="img-fluid rounded-start h-100 object-fit-cover" loading="lazy" alt="Philippine Medical Research">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start">
+                <div>
+                  <span class="badge bg-primary mb-2">Featured</span>
+                  <h2 class="card-title h3">DOH: Flu-like Illness Cases Drop - MIHP PH</h2>
+                </div>
+                <span class="text-muted small">Nov 9, 2025</span>
+              </div>
+              <p class="card-text">he Department of Health (DOH) on Monday reported a 25-percent decline in influenza-like illness (ILI) cases nationwide over the past two weeks, as the country continued to experience its seasonal rise in flu ...</p>
+              <a href="news/DOH LOW ILL.html" class="btn btn-link text-primary p-0">
+                Read More <i class="fas fa-arrow-right ms-1"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="newsGrid" class="news-grid">
+      
+        <div class="news-card">
+          <div class="card h-100">
+            <img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?auto=format&fit=crop&w=1200&q=60" class="card-img-top" loading="lazy" alt="UP Research">
+            <div class="card-body">
+              <h5 class="card-title"><b>UNAIDS, WHO back DOH call for urgent action on HIV surge</b></h5>
+              <p class="card-text"> UNAIDS and WHO supported the Department of Health’s (DOH) call for urgent action to address the rising cases of HIV...</p>
+              <a href="news/DOH-HIV.html" class="btn btn-sm btn-primary">Read More</a>
+            </div>
+            <div class="card-footer bg-transparent news-meta">Nov 8, 2025 • 8 min read</div>
+          </div>
+        </div>
+
+        
+        <div class="news-card">
+          <div class="card h-100">
+            <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=60" class="card-img-top" loading="lazy" alt="PGH Clinical Practice">
+            <div class="card-body">
+              <h5 class="card-title"><b>Philippine Cancer Society highlights real-world data study on national cancer care</b></h5>
+              <p class="card-text">A study comparing public vs private cancer-care institutions in Metro Manila and beyond (2020-24 data) was presented...</p>
+              <a href="news/Datastudy.html" class="btn btn-sm btn-primary">Read More</a>
+            </div>
+            <div class="card-footer bg-transparent news-meta">Nov 7, 2025 • 6 min read</div>
+          </div>
+        </div>
+
+        
+        <div class="news-card">
+          <div class="card h-100">
+            <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1200&q=60" class="card-img-top" loading="lazy" alt="Philippine Pharmaceutical">
+            <div class="card-body">
+              <h5 class="card-title"><b>Philippines Unveils AMR Action Plan 2024–2028</b></h5>
+              <p class="card-text">The Philippine National Action Plan on Antimicrobial Resistance 2024‑2028 is a strategic roadmap launched by...</p>
+              <a href="news/antimicrobial.html" class="btn btn-sm btn-primary">Read More</a>
+            </div>
+            <div class="card-footer bg-transparent news-meta">Feb, 2025 • 5 min read</div>
+          </div>
+        </div>
+
+  
+        <div class="news-card" >
+          <div class="card h-100">
+            <img src="https://images.unsplash.com/photo-1557825835-70d97c4aa567?auto=format&fit=crop&w=1200&q=60" class="card-img-top" loading="lazy" alt="Philippine Healthcare Policy">
+            <div class="card-body">
+              <h5 class="card-title">Experts Push Early Action vs. Diabetes, CKD</h5>
+              <p class="card-text">Health experts in the Philippines are calling for early detection and prevention...</p>
+              <a href="" class="btn btn-sm btn-primary">Read More</a>
+            </div>
+            <div class="card-footer bg-transparent news-meta">Aug 4, 2025 • 3 min read</div>
+          </div>
+        </div>
+
+        <div class="news-card">
+          <div class="card h-100">
+            <img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?auto=format&fit=crop&w=1200&q=60" class="card-img-top" alt="Genomics">
+            <div class="card-body">
+              <h5 class="card-title">Philippines Health spending Hits ₱ 1.56 Trillion in 2024</h5>
+              <p class="card-text">Data shows Filipino households spent on average ₱12,751 each on health care in 2024, up 18% ...</p>
+              <a href="news/PHhealth.html" class="btn btn-sm btn-primary">Read More</a>
+            </div>
+            <div class="card-footer bg-transparent news-meta">July 27, 2025 • 7 min read</div>
+          </div>
+        </div>
+
+        <div class="news-card">
+          <div class="card h-100">
+            <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1200&q=60" class="card-img-top" alt="Clinical Trials">
+            <div class="card-body">
+              <h5 class="card-title">Filipino communities use vast variety of endemic plants for health</h5>
+              <p class="card-text">A research article documents how 34 ethnolinguistic groups in the Philippines use 796 plant species for traditional medicinal...</p>
+              <a href="news/PlantsforHealth.html" class ="btn btn-sm btn-primary">Read More</a>
+            </div>
+            <div class="card-footer bg-transparent news-meta">Aug 12, 2025 • 5 min read</div>
+          </div>
+        </div>
+
+
+      </div>
+
+      <!-- Newsletter Section -->
+      <div class="card mt-5">
+        <div class="card-body text-center py-5">
+          <h3>Stay Updated with Medical News</h3>
+          <p class="mb-4">Subscribe to our newsletter to receive the latest medical news and updates directly in your inbox.</p>
+          <div class="row justify-content-center">
+            <div class="col-md-6">
+              <div class="input-group">
+                <input type="email" class="form-control" placeholder="Enter your email">
+                <button class="btn btn-primary">Subscribe</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer mt-5">
+    <div class="container">
+      <div class="row">
+        <!-- Quick Links -->
+        <div class="col-lg-3 col-md-6 footer-section">
+          <h4 class="footer-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+            <li><a href="drug-database.html"><i class="fas fa-chevron-right"></i> Drug Database</a></li>
+            <li><a href="drug-interactions.html"><i class="fas fa-chevron-right"></i> Drug Interactions</a></li>
+            <li><a href="clinical-tools.html"><i class="fas fa-chevron-right"></i> Clinical Tools</a></li>
+            <li><a href="medical-news.html"><i class="fas fa-chevron-right"></i> Medical News</a></li>
+            <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Services -->
+        <div class="col-lg-3 col-md-6 footer-section">
+          <h4 class="footer-title">Our Services</h4>
+          <ul class="footer-links">
+            <li><a href="#"><i class="fas fa-pills"></i> Medication Guide</a></li>
+            <li><a href="#"><i class="fas fa-exchange-alt"></i> Interaction Checker</a></li>
+            <li><a href="#"><i class="fas fa-calculator"></i> Clinical Calculators</a></li>
+            <li><a href="#"><i class="fas fa-newspaper"></i> Medical News</a></li>
+            <li><a href="#"><i class="fas fa-book-medical"></i> Healthcare Resources</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="col-lg-3 col-md-6 footer-section">
+          <h4 class="footer-title">Contact Us</h4>
+          <div class="footer-contact-info">
+            <i class="fas fa-envelope"></i>
+            <span>contact@mihp.ph</span>
+          </div>
+          <div class="footer-contact-info">
+            <i class="fas fa-phone"></i>
+            <span>+1 234 567 8900</span>
+          </div>
+          <div class="footer-contact-info">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Manila, Philippines</span>
+          </div>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="col-lg-3 col-md-6 footer-section">
+          <h4 class="footer-title">Newsletter</h4>
+          <p>Subscribe to our newsletter for the latest medical updates and news.</p>
+          <div class="input-group mb-3">
+            <input type="email" class="form-control" placeholder="Your email" aria-label="Your email">
+            <button class="btn btn-primary" type="button">Subscribe</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <div class="row">
+          <div class="col-12">
+            <p>© 2025 MIHP ph. All rights reserved. Designed for healthcare professionals.</p>
+            <p class="small mt-2">
+              <a href="terms.html" class="text-decoration-none text-light me-3">Terms of Service</a>
+              <a href="cookie-policy.html" class="text-decoration-none text-light">Cookie Policy</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Search Result Modal -->
+  <div class="modal fade" id="searchDetailModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Drug Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Content will be populated by JavaScript -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    // News filtering functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const categoryButtons = document.querySelectorAll('#newsCategories .nav-link');
+      const newsItems = document.querySelectorAll('#newsGrid [data-category]');
+      
+      categoryButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const category = this.getAttribute('data-category');
+          
+          // Update active button
+          categoryButtons.forEach(btn => btn.classList.remove('active'));
+          this.classList.add('active');
+          
+          // Filter news items
+          newsItems.forEach(item => {
+            if (category === 'all' || item.getAttribute('data-category') === category) {
+              item.style.display = '';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // News search functionality
+      const searchInput = document.getElementById('newsSearch');
+      if (searchInput) {
+        searchInput.addEventListener('input', function() {
+          const searchTerm = this.value.toLowerCase();
+          const newsCards = document.querySelectorAll('#newsGrid .card');
+          
+          newsCards.forEach(card => {
+            const title = card.querySelector('.card-title').textContent.toLowerCase();
+            const content = card.querySelector('.card-text').textContent.toLowerCase();
+            
+            if (title.includes(searchTerm) || content.includes(searchTerm)) {
+              card.closest('[data-category]').style.display = '';
+            } else {
+              card.closest('[data-category]').style.display = 'none';
+            }
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIHP - Medical Information for Healthcare Professionals</title>  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    
+    <div class="topbar bg-primary text-white py-2">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="small">Medical Information for Healthcare Professionals</div>
+                <div class="small">
+                    <a href="#" class="text-white text-decoration-none me-3" data-bs-toggle="modal" data-bs-target="#contactModal" role="button">
+                        <i class="fas fa-envelope me-1"></i>Contact Us
+                    </a>
+                    <span class="text-white-50">•</span>
+                    <a href="mailto:contact@mihp.ph" class="text-white text-decoration-none ms-3">
+                        <i class="fas fa-phone me-1"></i>+1 234 567 8900
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="header-main py-3 bg-white border-bottom">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <a class="navbar-brand text-primary me-3" href="index.html">
+                        <i class="fas fa-stethoscope me-2"></i>MIHP
+                    </a>
+                    <span class="text-muted d-none d-md-inline">Medical Information for Healthcare Professionals</span>
+                </div>
+                <div class="search-wrap ms-3">
+                    <div class="d-flex">
+                        <input type="text" class="form-control" id="siteSearchInput" placeholder="Search drugs...">
+                        <button class="btn btn-primary ms-2">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <div id="searchResults" class="list-group shadow-sm"></div>
+                </div>
+                <!-- User profile / auth buttons (populated by JS) -->
+                <div id="userProfile" class="ms-3 d-flex align-items-center"></div>
+                <!-- Visible logout button container for quick access (always shown but disabled until signed in) -->
+                <div id="logoutButtonContainer" class="ms-2">
+                    <button id="headerLogoutBtn" class="btn btn-danger disabled" aria-hidden="true" disabled>Log out</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+                        <button class="navbar-toggler d-lg-none ms-auto my-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+                            <div class="offcanvas-header">
+                                <h5 class="offcanvas-title" id="offcanvasNavLabel">Menu</h5>
+                                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body">
+                                <ul class="navbar-nav w-100 justify-content-evenly flex-column flex-lg-row align-items-start align-items-lg-center">
+                                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="drug-database.html">Drug Database</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="drug-interactions.html">Drug Interactions</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="clinical-tools.html">Clinical Tools</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="medical-news.html">Medical News</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                                    <!-- Placeholder for user/profile items displayed inside the site menu -->
+                                    <li id="menuUserItem" class="nav-item ms-lg-3"></li>
+                                </ul>
+                            </div>
+                        </div>
+        </div>
+    </nav>
+
+  
+    <section id="home" class="hero-section">
+        <div class="container text-center py-5">
+            <h1 class="display-4 fw-bold mb-3">Medical Information for Healthcare Professionals</h1>
+            <p class="lead mb-5" style="font-size: 1.15rem; color: rgba(255,255,255,0.95);">Comprehensive drug database, clinical tools, and medical news at your fingertips</p>
+            <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+                <button class="btn btn-lg btn-light shadow-sm" id="heroSearchBtn" aria-label="Search drugs">
+                    <i class="fas fa-search me-2"></i>Search Drugs
+                </button>
+                <a href="drug-database.html" class="btn btn-lg btn-primary shadow-sm">
+                    <i class="fas fa-database me-2"></i>Open Database
+                </a>
+                <a href="medical-news.html" class="btn btn-lg btn-outline-light shadow-sm" id="heroNewsBtn" role="button">
+                    <i class="fas fa-newspaper me-2"></i>Latest News
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="py-5">
+        <div class="container">
+            <div class="row mb-4 text-center">
+                <div class="col-6 col-md-4 mb-3">
+                    <div class="p-3 bg-white card h-100">
+                        <div class="h2 text-primary mb-1">50K+</div>
+                        <div class="text-muted small">Drug records</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 mb-3">
+                    <div class="p-3 bg-white card h-100">
+                        <div class="h2 text-primary mb-1">20+</div>
+                        <div class="text-muted small">Clinical tools</div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 mb-3">
+                    <div class="p-3 bg-white card h-100">
+                        <div class="h2 text-primary mb-1">Daily</div>
+                        <div class="text-muted small">News updates</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card text-center h-100">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="fas fa-pills"></i>
+                            </div>
+                            <h4 class="card-title">Drug Database</h4>
+                            <p class="card-text">Comprehensive information on medications, dosages, side effects, and more.</p>
+                            <a href="#drug-database" class="btn btn-outline-primary">Explore Database</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card text-center h-100">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="fas fa-exchange-alt"></i>
+                            </div>
+                            <h4 class="card-title">Drug Interactions</h4>
+                            <p class="card-text">Check for potential interactions between multiple medications.</p>
+                            <a href="#interactions" class="btn btn-outline-primary">Check Interactions</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card text-center h-100">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="fas fa-newspaper"></i>
+                            </div>
+                            <h4 class="card-title">Medical News</h4>
+                            <p class="card-text">Stay updated with the latest medical research and clinical guidelines.</p>
+                            <a href="#news" class="btn btn-outline-primary">Read News</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center mb-4">Explore MIHP</h2>
+            <p class="lead text-center mb-5">Jump straight to the resource you need.</p>
+            <div class="row mt-4 g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm border-0 transition-transform">
+                        <div class="card-body text-center">
+                            <i class="fas fa-pills fa-3x text-primary mb-3"></i>
+                            <h5 class="card-title fw-bold">Drug Database</h5>
+                            <p class="card-text text-muted">Comprehensive drug monographs, dosing and safety information.</p>
+                            <a href="drug-database.html" class="btn btn-primary btn-sm">Open Database</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm border-0 transition-transform">
+                        <div class="card-body text-center">
+                            <i class="fas fa-exchange-alt fa-3x text-primary mb-3"></i>
+                            <h5 class="card-title fw-bold">Drug Interactions</h5>
+                            <p class="card-text text-muted">Check interactions between multiple medicines quickly.</p>
+                            <a href="drug-interactions.html" class="btn btn-primary btn-sm">Check Interactions</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm border-0 transition-transform">
+                        <div class="card-body text-center">
+                            <i class="fas fa-calculator fa-3x text-primary mb-3"></i>
+                            <h5 class="card-title fw-bold">Clinical Tools</h5>
+                            <p class="card-text text-muted">Calculators and quick clinical decision aids.</p>
+                            <a href="clinical-tools.html" class="btn btn-primary btn-sm">Open Tools</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <a href="about.html" class="btn btn-outline-secondary">Learn About MIHP</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center mb-4">Featured News</h2>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="card featured-news h-100 shadow-sm border-0">
+                        <div class="row g-0">
+                            <div class="col-md-5">
+                                <img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?auto=format&fit=crop&w=800&q=60" class="img-fluid rounded-start h-100 object-fit-cover" alt="Featured news">
+                            </div>
+                            <div class="col-md-7">
+                                <div class="card-body d-flex flex-column">
+                                    <h3 class="card-title h5 fw-bold">DOH: Flu-like Illness Cases Drop</h3>
+                                    <p class="card-text text-muted flex-grow-1">The Department of Health reported a 25% decline in influenza-like illness cases nationwide — learn what this means for clinical practice.</p>
+                                    <a href="news/DOH LOW ILL.html" class="btn btn-primary btn-sm align-self-start">Read full article →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="list-group shadow-sm">
+                        <a href="news/DOH-HIV.html" class="list-group-item list-group-item-action border-0">
+                            <strong>UNAIDS & WHO</strong> back DOH on HIV surge
+                        </a>
+                        <a href="news/ActiontoCKD.html" class="list-group-item list-group-item-action border-0">
+                            <strong>Antimicrobial Resistance</strong> intensifies in Philippines
+                        </a>
+                        <a href="medical-news.html" class="list-group-item list-group-item-action border-0 text-primary">
+                            View all news →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer mt-5">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-3 col-md-6 footer-section">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="drug-database.html"><i class="fas fa-chevron-right"></i> Drug Database</a></li>
+                        <li><a href="drug-interactions.html"><i class="fas fa-chevron-right"></i> Drug Interactions</a></li>
+                        <li><a href="clinical-tools.html"><i class="fas fa-chevron-right"></i> Clinical Tools</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    </ul>
+                </div>
+
+                
+                <div class="col-lg-3 col-md-6 footer-section">
+                    <h4 class="footer-title">Our Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-pills"></i> Medication Guide</a></li>
+                        <li><a href="#"><i class="fas fa-exchange-alt"></i> Interaction Checker</a></li>
+                        <li><a href="#"><i class="fas fa-calculator"></i> Clinical Calculators</a></li>
+                        <li><a href="#"><i class="fas fa-newspaper"></i> Medical News</a></li>
+                        <li><a href="#"><i class="fas fa-book-medical"></i> Healthcare Resources</a></li>
+                    </ul>
+                </div>
+
+               
+                <div class="col-lg-3 col-md-6 footer-section">
+                    <h4 class="footer-title">Contact Us</h4>
+                    <div class="footer-contact-info">
+                        <i class="fas fa-envelope"></i>
+                        <span>contact@mihp.ph</span>
+                    </div>
+                    <div class="footer-contact-info">
+                        <i class="fas fa-phone"></i>
+                        <span>+1 234 567 8900</span>
+                    </div>
+                    <div class="footer-contact-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Manila, Philippines</span>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-section">
+                    <h4 class="footer-title">Newsletter</h4>
+                    <p>Subscribe to our newsletter for the latest medical updates and news.</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Your email" aria-label="Your email">
+                        <button class="btn btn-primary" type="button">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+
+                    <div class="footer-bottom">
+                            <div class="row">
+                                <div class="col-12">
+                                    <p>© 2025 MIHP ph. All rights reserved. Designed for healthcare professionals.</p>
+                                    <p class="small mt-2">
+                                        <a href="terms.html" class="text-decoration-none text-light me-3">Terms of Service</a>
+                                        <a href="cookie-policy.html" class="text-decoration-none text-light">Cookie Policy</a>
+                                    </p>
+                                </div>
+                            </div>
+                    </div>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg">
+                <div class="modal-header bg-primary text-white border-0">
+                    <h5 class="modal-title" id="contactModalLabel">
+                        <i class="fas fa-envelope me-2"></i>Contact Us
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="contactForm" novalidate>
+                        <div class="mb-3">
+                            <label for="contactName" class="form-label fw-bold">Full Name</label>
+                            <input type="text" class="form-control" id="contactName" name="name" placeholder="Your full name" required>
+                            <div class="invalid-feedback">Please provide a name.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="contactEmail" class="form-label fw-bold">Email Address</label>
+                            <input type="email" class="form-control" id="contactEmail" name="email" placeholder="your.email@example.com" required>
+                            <div class="invalid-feedback">Please provide a valid email address.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="contactSubject" class="form-label fw-bold">Subject</label>
+                            <input type="text" class="form-control" id="contactSubject" name="subject" placeholder="What is this about?" required>
+                            <div class="invalid-feedback">Please provide a subject.</div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="contactMessage" class="form-label fw-bold">Message</label>
+                            <textarea class="form-control" id="contactMessage" name="message" rows="4" placeholder="Your message..." required></textarea>
+                            <div class="invalid-feedback">Please provide a message.</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 fw-bold">
+                            <i class="fas fa-paper-plane me-2"></i>Send Message
+                        </button>
+                    </form>
+                    <div id="contactSuccess" class="alert alert-success mt-3" role="alert" style="display: none;">
+                        <i class="fas fa-check-circle me-2"></i>
+                        <strong>Thank you!</strong> We've received your message and will get back to you soon.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="searchDetailModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Drug Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="assets/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            var heroSearchBtn = document.getElementById('heroSearchBtn');
+            var searchInput = document.getElementById('siteSearchInput');
+            if(heroSearchBtn && searchInput){
+                heroSearchBtn.addEventListener('click', function(){
+                    searchInput.focus();
+                    if(typeof searchInput.select === 'function') searchInput.select();
+                });
+            }
+            var heroNewsBtn = document.getElementById('heroNewsBtn');
+            if(heroNewsBtn) heroNewsBtn.setAttribute('role','button');
+
+            // Contact form validation and submission
+            var contactForm = document.getElementById('contactForm');
+            var contactModal = document.getElementById('contactModal');
+            var contactSuccess = document.getElementById('contactSuccess');
+            
+            if(contactForm){
+                contactForm.addEventListener('submit', function(e){
+                    e.preventDefault();
+                    
+                    if(!contactForm.checkValidity()){
+                        e.stopPropagation();
+                        contactForm.classList.add('was-validated');
+                        return;
+                    }
+                    
+                    var formData = {
+                        name: document.getElementById('contactName').value,
+                        email: document.getElementById('contactEmail').value,
+                        subject: document.getElementById('contactSubject').value,
+                        message: document.getElementById('contactMessage').value
+                    };
+                    
+                    // Show success message
+                    contactForm.style.display = 'none';
+                    contactSuccess.style.display = 'block';
+                    
+                    // Reset and close after 2 seconds
+                    setTimeout(function(){
+                        contactForm.reset();
+                        contactForm.classList.remove('was-validated');
+                        contactForm.style.display = 'block';
+                        contactSuccess.style.display = 'none';
+                        var modalInstance = bootstrap.Modal.getInstance(contactModal);
+                        if(modalInstance) modalInstance.hide();
+                    }, 2000);
+                    
+                    console.log('Form submitted:', formData);
+                });
+            }
+        });
+    </script>
+        <script>
+            // Render header profile area and handle logout
+            document.addEventListener('DOMContentLoaded', function(){
+                function renderProfile(){
+                    var userProfile = document.getElementById('userProfile');
+                    if(!userProfile) return;
+                    try{
+                        // simple helper to escape HTML (prevents injected usernames breaking the menu)
+                        function escapeHtml(str){
+                            return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+                        }
+                        var auth = localStorage.getItem('mims_auth');
+                        var user = localStorage.getItem('mims_user') || '';
+                        if(auth === '1'){
+                        userProfile.innerHTML = '\n                            <div class="dropdown">\n                              <a class="btn btn-light dropdown-toggle d-flex align-items-center" href="#" role="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">\n                                <i class="fas fa-user-circle fa-lg me-2 text-primary"></i><span id="profileName">'+(user?user:'User')+'</span>\n                              </a>\n                              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">\n                                <li><a class="dropdown-item" href="profile.html">Profile</a></li>\n                                <li><hr class="dropdown-divider"></li>\n                                <li><a class="dropdown-item" href="#" id="logoutBtn">Log out</a></li>\n                              </ul>\n                            </div>';
+                        var logoutBtn = document.getElementById('logoutBtn');
+                        if(logoutBtn){
+                            logoutBtn.addEventListener('click', function(e){
+                                e.preventDefault();
+                                try{ localStorage.removeItem('mims_auth'); localStorage.removeItem('mims_user'); localStorage.removeItem('mims_email'); }catch(err){}
+                                window.location.href = 'login.html';
+                            });
+                        }
+                        // Render profile/logout inside the site menu
+                        var menuItem = document.getElementById('menuUserItem');
+                        if(menuItem){
+                            // Render at the bottom of the menu with a divider and signed-in label
+                            menuItem.innerHTML = '\n                              <hr class="my-2">\n                              <div class="px-3 small text-muted">Signed in as <strong>' + (user ? escapeHtml(user) : 'User') + '</strong></div>\n                              <a class="nav-link" href="profile.html">Profile</a>\n                              <button id="menuLogoutLink" class="btn btn-gradient btn-block w-100 py-2 mt-2" style="background: linear-gradient(90deg,#2266a3 0%,#3a8dde 100%); color: #fff; border: none; border-radius: 6px; font-weight: 600; box-shadow: 0 2px 6px rgba(44,98,180,0.08); transition: background 0.2s;">\n                                <i class=\"fas fa-sign-out-alt me-2\"></i>Log out\n                              </button>';
+                            var menuLogout = document.getElementById('menuLogoutLink');
+                            if(menuLogout){
+                                menuLogout.addEventListener('click', function(e){
+                                    e.preventDefault();
+                                    try{ localStorage.removeItem('mims_auth'); localStorage.removeItem('mims_user'); localStorage.removeItem('mims_email'); }catch(err){}
+                                    window.location.href = 'login.html';
+                                });
+                            }
+                        }
+                        // Enable the visible logout button (button exists in DOM but disabled by default)
+                        var headerLogoutBtn = document.getElementById('headerLogoutBtn');
+                        if(headerLogoutBtn){
+                            headerLogoutBtn.disabled = false;
+                            headerLogoutBtn.classList.remove('disabled');
+                            headerLogoutBtn.removeAttribute('aria-hidden');
+                            // remove old listeners by replacing with a clone, then add a fresh listener
+                            var newBtn = headerLogoutBtn.cloneNode(true);
+                            headerLogoutBtn.parentNode.replaceChild(newBtn, headerLogoutBtn);
+                            newBtn.addEventListener('click', function(e){
+                                e.preventDefault();
+                                try{ localStorage.removeItem('mims_auth'); localStorage.removeItem('mims_user'); localStorage.removeItem('mims_email'); }catch(err){}
+                                window.location.href = 'login.html';
+                            });
+                        }
+                        } else {
+                            // Do not show login/signup links on the home page — authentication handled on a separate page
+                            userProfile.innerHTML = '';
+                            var headerLogoutBtn = document.getElementById('headerLogoutBtn'); if(headerLogoutBtn) { headerLogoutBtn.disabled = true; headerLogoutBtn.classList.add('disabled'); headerLogoutBtn.setAttribute('aria-hidden','true'); }
+                            var menuItem = document.getElementById('menuUserItem'); if(menuItem) menuItem.innerHTML = '';
+                        }
+                    }catch(e){
+                        // On error, keep the area empty and disable logout button
+                        userProfile.innerHTML = '';
+                        var headerLogoutBtn = document.getElementById('headerLogoutBtn'); if(headerLogoutBtn) { headerLogoutBtn.disabled = true; headerLogoutBtn.classList.add('disabled'); headerLogoutBtn.setAttribute('aria-hidden','true'); }
+                    }
+                }
+                renderProfile();
+                // Centralized logout handler (event delegation) to ensure clicks work even on dynamically created elements
+                function doLogout(){
+                    try{ localStorage.removeItem('mims_auth'); localStorage.removeItem('mims_user'); localStorage.removeItem('mims_email'); }catch(err){}
+                    // Small timeout to allow storage to update UI in other tabs if needed
+                    setTimeout(function(){ window.location.href = 'modern-login-signin-form.html'; }, 10);
+                }
+
+                document.addEventListener('click', function(e){
+                    var target = e.target;
+                    // check closest for links or buttons that represent logout
+                    var menuLogout = target.closest && target.closest('#menuLogoutLink');
+                    var dropdownLogout = target.closest && target.closest('#logoutBtn');
+                    var headerLogout = target.closest && target.closest('#headerLogoutBtn');
+                    if(menuLogout || dropdownLogout || headerLogout){
+                        e.preventDefault();
+                        doLogout();
+                    }
+                }, {passive:false});
+                // Update profile UI if localStorage changes in another tab
+                window.addEventListener('storage', function(e){
+                    if(e.key === 'mims_auth' || e.key === 'mims_user') renderProfile();
+                });
+            });
+        </script>
+</body>
+</html>

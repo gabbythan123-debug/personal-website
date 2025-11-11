@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Drug Interactions - MIHP</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  
+  <div class="topbar bg-primary text-white py-2">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="small">Medical Information for Healthcare Professionals</div>
+  <div class="small"><a href="mailto:contact@mihp.ph" class="text-white text-decoration-none"><i class="fas fa-envelope me-1"></i>Contact Us</a></div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="header-main py-3 bg-white border-bottom">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center">
+          <a class="navbar-brand text-primary me-3" href="index.html">
+            <i class="fas fa-stethoscope me-2"></i>MIHP
+          </a>
+          <span class="text-muted d-none d-md-inline">Medical Information for Healthcare Professionals</span>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+      <button class="navbar-toggler d-lg-none ms-auto my-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavLabel">Menu</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav w-100 justify-content-evenly flex-column flex-lg-row align-items-start align-items-lg-center">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="drug-database.html">Drug Database</a></li>
+            <li class="nav-item"><a class="nav-link active" href="drug-interactions.html">Drug Interactions</a></li>
+            <li class="nav-item"><a class="nav-link" href="clinical-tools.html">Clinical Tools</a></li>
+            <li class="nav-item"><a class="nav-link" href="medical-news.html">Medical News</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="py-5">
+    <div class="container">
+      <h1>Drug Interactions Checker</h1>
+      <p class="lead">Enter drugs to check for potential interactions.</p>
+
+      <div class="row">
+        <div class="col-md-8">
+          <div class="card"><div class="card-body">
+            <div class="mb-3">
+              <label for="drug1" class="form-label">Drug 1</label>
+              <input id="drug1" class="form-control" placeholder="Enter drug name">
+            </div>
+            <div class="mb-3">
+              <label for="drug2" class="form-label">Drug 2</label>
+              <input id="drug2" class="form-control" placeholder="Enter drug name">
+            </div>
+            <div class="mb-3">
+              <label for="drug3" class="form-label">Drug 3 (optional)</label>
+              <input id="drug3" class="form-control" placeholder="Enter drug name">
+            </div>
+            <button class="btn btn-primary" onclick="checkInteractions()">Check Interactions</button>
+          </div></div>
+
+          <div class="card mt-4"><div class="card-body">
+            <h5>Interaction Results</h5>
+            <div id="interactionResults" class="alert alert-info">Enter drug names and click "Check Interactions".</div>
+          </div></div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card"><div class="card-body">
+            <h5>Common Interactions</h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><strong>Warfarin & NSAIDs</strong><br><small class="text-muted">Increased bleeding risk</small></li>
+              <li class="list-group-item"><strong>Statins & Macrolides</strong><br><small class="text-muted">Myopathy risk</small></li>
+              <li class="list-group-item"><strong>SSRIs & MAOIs</strong><br><small class="text-muted">Serotonin syndrome risk</small></li>
+            </ul>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer mt-5">
+    <div class="container">
+      <div class="row">
+        <!-- Quick Links -->
+        <div class="col-lg-3 col-md-6 footer-section">
+          <h4 class="footer-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+            <li><a href="drug-database.html"><i class="fas fa-chevron-right"></i> Drug Database</a></li>
+            <li><a href="drug-interactions.html"><i class="fas fa-chevron-right"></i> Drug Interactions</a></li>
+            <li><a href="clinical-tools.html"><i class="fas fa-chevron-right"></i> Clinical Tools</a></li>
+            <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Services -->
+        <div class="col-lg-3 col-md-6 footer-section">
+          <h4 class="footer-title">Our Services</h4>
+          <ul class="footer-links">
+            <li><a href="#"><i class="fas fa-pills"></i> Medication Guide</a></li>
+            <li><a href="#"><i class="fas fa-exchange-alt"></i> Interaction Checker</a></li>
+            <li><a href="#"><i class="fas fa-calculator"></i> Clinical Calculators</a></li>
+            <li><a href="#"><i class="fas fa-newspaper"></i> Medical News</a></li>
+            <li><a href="#"><i class="fas fa-book-medical"></i> Healthcare Resources</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="col-lg-3 col-md-6 footer-section">
+          <h4 class="footer-title">Contact Us</h4>
+          <div class="footer-contact-info">
+            <i class="fas fa-envelope"></i>
+            <span>contact@mihp.ph</span>
+          </div>
+          <div class="footer-contact-info">
+            <i class="fas fa-phone"></i>
+            <span>+1 234 567 8900</span>
+          </div>
+          <div class="footer-contact-info">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Manila, Philippines</span>
+          </div>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="col-lg-3 col-md-6 footer-section">
+          <h4 class="footer-title">Newsletter</h4>
+          <p>Subscribe to our newsletter for the latest medical updates and news.</p>
+          <div class="input-group mb-3">
+            <input type="email" class="form-control" placeholder="Your email" aria-label="Your email">
+            <button class="btn btn-primary" type="button">Subscribe</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <div class="row">
+          <div class="col-12">
+            <p>© 2025 MIHP ph. All rights reserved. Designed for healthcare professionals.</p>
+            <p class="small mt-2">
+              <a href="terms.html" class="text-decoration-none text-light me-3">Terms of Service</a>
+              <a href="cookie-policy.html" class="text-decoration-none text-light">Cookie Policy</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Search Result Modal -->
+  <div class="modal fade" id="searchDetailModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Drug Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Content will be populated by JavaScript -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

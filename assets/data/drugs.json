@@ -1,0 +1,12 @@
+[
+  { "brand": "Lipitor", "generic": "Atorvastatin", "category": "Cardiovascular", "notes": "Lipid-lowering agent; monitor LFTs" },
+  { "brand": "Norvasc", "generic": "Amlodipine", "category": "Cardiovascular", "notes": "Dihydropyridine CCB" },
+  { "brand": "Plavix", "generic": "Clopidogrel", "category": "Cardiovascular", "notes": "Antiplatelet" },
+  { "brand": "Augmentin", "generic": "Amoxicillin/Clavulanate", "category": "Antibiotics", "notes": "Broad-spectrum penicillin" },
+  { "brand": "Zithromax", "generic": "Azithromycin", "category": "Antibiotics", "notes": "Macrolide; monitor QT" },
+  { "brand": "Cipro", "generic": "Ciprofloxacin", "category": "Antibiotics", "notes": "Fluoroquinolone" },
+  { "brand": "Prozac", "generic": "Fluoxetine", "category": "CNS Drugs", "notes": "SSRI" },
+  { "brand": "Xanax", "generic": "Alprazolam", "category": "CNS Drugs", "notes": "Benzodiazepine; risk of dependence" },
+  { "brand": "Neurontin", "generic": "Gabapentin", "category": "CNS Drugs", "notes": "Neuropathic pain" },
+  { "brand": "Metformin", "generic": "Metformin", "category": "Endocrine", "notes": "First-line for type 2 diabetes" }
+]
